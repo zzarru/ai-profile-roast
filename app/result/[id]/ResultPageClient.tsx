@@ -13,7 +13,7 @@ export default function ResultPageClient({ result }: { result: RoastResult }) {
     <main className="min-h-screen px-4 py-10 max-w-lg mx-auto">
       <h1 className="text-2xl font-black mb-1">판결 완료 ⚖️</h1>
       <p className="text-gray-400 text-sm mb-6">
-        {result.persona_name}의 솔직한 평가입니다
+        {result.persona_name}님이 이런 평가를 했습니다
       </p>
 
       <ResultCard ref={cardRef} result={result} />

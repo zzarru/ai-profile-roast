@@ -68,6 +68,7 @@ export default function CustomPersonaPage() {
   const router = useRouter();
   const [step, setStep] = useState<Step>('input');
   const [mode, setMode] = useState<InputMode>('describe');
+  const [name, setName] = useState('');
   const [text, setText] = useState('');
   const [extracted, setExtracted] = useState<{
     persona_name: string;
@@ -103,7 +104,7 @@ export default function CustomPersonaPage() {
   function handleConfirm() {
     if (!extracted) return;
     saveSession({
-      personaName: extracted.persona_name,
+      personaName: name.trim() || extracted.persona_name,
       personaDescription: extracted.persona_description,
       personaViewpoint: extracted.persona_viewpoint,
     });
@@ -114,6 +115,7 @@ export default function CustomPersonaPage() {
     setMode(newMode);
     setText('');
     setError('');
+    setName('');
   }
 
   if (step === 'loading') {
@@ -200,6 +202,22 @@ export default function CustomPersonaPage() {
         >
           💬 카카오톡 붙여넣기
         </button>
+      </div>
+
+      {/* 이름 입력 */}
+      <div className="mb-4">
+        <label className="text-xs text-gray-500 mb-1.5 block">
+          이름 또는 닉네임 <span className="text-gray-600">(선택)</span>
+        </label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="예: 민준이, 전 남자친구, 팀장님"
+          maxLength={20}
+          className="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-gray-500 transition-colors"
+        />
+        <p className="text-xs text-gray-600 mt-1">결과 화면에 "{name.trim() || '이름'}님의 호감도가 X점" 형식으로 표시돼요</p>
       </div>
 
       {/* 예시 빠른 선택 */}

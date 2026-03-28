@@ -30,7 +30,7 @@ const ResultCard = forwardRef<HTMLDivElement, Props>(({ result }, ref) => {
       <div className="font-bold text-base mb-5">{result.persona_name}</div>
 
       {/* 점수 */}
-      <div className="text-xs text-gray-500 mb-1">호감도 점수</div>
+      <div className="text-xs text-gray-500 mb-1">{result.persona_name}님의 호감도</div>
       <div className={`text-5xl font-black mb-1 ${scoreColor}`}>
         {result.score.toLocaleString()}점
       </div>
