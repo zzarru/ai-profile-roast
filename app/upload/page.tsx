@@ -14,14 +14,23 @@ export default function UploadPage() {
   const [error, setError] = useState('');
 
   function handleFile(file: File) {
-    const mediaType = file.type as 'image/jpeg' | 'image/png' | 'image/webp';
-    setImageMediaType(mediaType);
+    setImageMediaType('image/jpeg');
     const reader = new FileReader();
     reader.onload = (e) => {
       const dataUrl = e.target?.result as string;
-      setPreview(dataUrl);
-      const base64 = dataUrl.split(',')[1];
-      setImageBase64(base64);
+      const img = new Image();
+      img.onload = () => {
+        const MAX = 800;
+        const scale = Math.min(1, MAX / Math.max(img.width, img.height));
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const resized = canvas.toDataURL('image/jpeg', 0.85);
+        setPreview(resized);
+        setImageBase64(resized.split(',')[1]);
+      };
+      img.src = dataUrl;
     };
     reader.readAsDataURL(file);
   }
