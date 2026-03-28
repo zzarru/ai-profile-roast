@@ -1,19 +1,14 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { PRESET_PERSONAS } from '@/lib/presets';
 import { saveSession } from '@/lib/store';
-import PersonaCard from '@/components/PersonaCard';
 
 export default function PersonaPage() {
   const router = useRouter();
-  const [selected, setSelected] = useState<number | null>(null);
 
-  function handleNext() {
-    if (selected === null) return;
-    const persona = PRESET_PERSONAS[selected];
+  function handleSelect(i: number) {
+    const persona = PRESET_PERSONAS[i];
     saveSession({
       personaName: persona.name,
       personaDescription: persona.description,
@@ -28,31 +23,26 @@ export default function PersonaPage() {
         누가 당신의 프사를 평가할까요?
       </p>
 
-      <div className="grid grid-cols-2 gap-3 mb-6">
+      <div className="grid grid-cols-2 gap-3">
         {PRESET_PERSONAS.map((persona, i) => (
-          <PersonaCard
+          <button
             key={i}
-            persona={persona}
-            selected={selected === i}
-            onClick={() => setSelected(i)}
-          />
+            onClick={() => handleSelect(i)}
+            className="w-full text-left p-5 rounded-2xl border-2 border-gray-800 hover:border-white hover:bg-white/5 transition-all active:scale-95"
+          >
+            <div className="text-4xl mb-3">{persona.emoji}</div>
+            <div className="font-bold text-base leading-tight">{persona.name}</div>
+          </button>
         ))}
-      </div>
 
-      <div className="flex flex-col gap-3">
+        {/* 직접 만들기 카드 */}
         <button
-          onClick={handleNext}
-          disabled={selected === null}
-          className="w-full bg-white text-black font-bold py-4 rounded-full disabled:opacity-30 hover:bg-gray-200 transition-colors"
+          onClick={() => router.push('/persona/custom')}
+          className="w-full text-left p-5 rounded-2xl border-2 border-dashed border-gray-700 hover:border-gray-400 hover:bg-white/5 transition-all active:scale-95"
         >
-          이 심판관으로 판결받기 →
+          <div className="text-4xl mb-3">✏️</div>
+          <div className="font-bold text-base leading-tight text-gray-400">직접 만들기</div>
         </button>
-        <Link
-          href="/persona/custom"
-          className="w-full text-center border border-gray-700 text-gray-400 font-medium py-4 rounded-full hover:border-gray-500 transition-colors"
-        >
-          ✏️ 직접 심판관 만들기
-        </Link>
       </div>
     </main>
   );
