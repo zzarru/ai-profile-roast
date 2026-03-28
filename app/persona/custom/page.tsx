@@ -11,15 +11,27 @@ const EXAMPLES: Record<InputMode, { label: string; text: string }[]> = {
   describe: [
     {
       label: '전 남자친구',
-      text: '나를 3년 전에 차버린 전 남자친구. 완벽주의자고 외모에 기준이 엄청 높음. 항상 내 스타일 지적하고, 사진 찍을 때 각도 뭐가 어떻다고 잔소리했음. 지금은 나보다 못한 사람이랑 사귀는 중.',
+      text: `나와의 관계: 3년 전에 나를 차버린 전 남자친구
+성격: 완벽주의자. 감정 표현 거의 없음. 항상 냉정하게 팩트만 말함
+외모 호불호: 기준이 엄청 높음. 자연스러운 스타일 선호, 과한 화장이나 필터 싫어함
+취미/관심사: 운동, 사진 구도에 진심
+평소 말투: 직설적 반말. "그 각도 별로야", "배경이 왜 이래", "다시 찍어" 스타일`,
     },
     {
       label: '직장 상사',
-      text: '우리 팀 차장님. 완벽주의에 표정 관리 철저한 냉정한 타입. 칭찬 한번 안 하고 항상 "이게 최선이에요?"라고 되묻는 스타일. 패션 센스는 있는데 남들한테도 높은 기준 들이댐.',
+      text: `나와의 관계: 같은 팀 차장님. 나보다 7살 많음
+성격: 완벽주의, 표정 관리 철저, 칭찬 거의 안 함
+외모 호불호: 단정하고 깔끔한 스타일 선호. 과한 연출 싫어함
+취미/관심사: 골프, 자기계발서
+평소 말투: "이게 최선이에요?", "다시 한번 생각해봐요" 같은 돌려 까는 스타일. 존댓말이지만 차가움`,
     },
     {
       label: '인기 선배',
-      text: '동아리 인기 선배. 잘생기고 스펙도 좋은데 본인도 그걸 앎. 후배들 사진 보면 무심하게 "뭐 이런 걸 올려"라고 하는 타입. 근데 마음에 들면 티나게 챙겨줌.',
+      text: `나와의 관계: 동아리 선배. 나 좋아하는 것 같기도 한데 모르겠음
+성격: 잘생기고 스펙도 좋은데 본인이 그걸 앎. 무심한 척하지만 은근 챙겨줌
+외모 호불호: 분위기 있는 사진 좋아함. 과한 보정이나 억지 표정 싫어함
+취미/관심사: 밴드, 영화, 여행
+평소 말투: 짧고 무심한 반말. "뭐 이런 걸 올려", "그냥 올려 어차피 잘 나왔잖아" 스타일`,
     },
   ],
   kakao: [
@@ -38,15 +50,16 @@ const EXAMPLES: Record<InputMode, { label: string; text: string }[]> = {
 
 const TIPS: Record<InputMode, string[]> = {
   describe: [
-    '외모 기준이 높은지 낮은지',
-    '어떤 스타일을 선호하는지',
-    '솔직한 편인지, 돌려 말하는지',
-    '나와의 관계 (친구, 전연인, 상사 등)',
+    '나와의 관계 (전 연인, 상사, 짝사랑 상대 등)',
+    '성격 (완벽주의? 감성적? 직설적?)',
+    '외모·사진 호불호 (어떤 스타일 좋아하고 싫어하는지)',
+    '취미나 관심사',
+    '평소 말투나 자주 하는 말',
   ],
   kakao: [
     '길수록 페르소나 정확도 올라감',
-    '말투와 어조가 잘 드러나는 대화 선택',
-    '외모/사진 관련 대화면 더 정확',
+    '말투·어조가 잘 드러나는 대화 선택',
+    '사진·외모 관련 대화면 더 정확',
     '이름/닉네임은 그대로 넣어도 됨',
   ],
 };
@@ -59,6 +72,7 @@ export default function CustomPersonaPage() {
   const [extracted, setExtracted] = useState<{
     persona_name: string;
     persona_description: string;
+    persona_viewpoint: string;
   } | null>(null);
   const [error, setError] = useState('');
 
@@ -91,7 +105,7 @@ export default function CustomPersonaPage() {
     saveSession({
       personaName: extracted.persona_name,
       personaDescription: extracted.persona_description,
-      personaViewpoint: '', // 프리셋 viewpoint 잔여 방지
+      personaViewpoint: extracted.persona_viewpoint,
     });
     router.push('/upload');
   }
@@ -146,8 +160,11 @@ export default function CustomPersonaPage() {
   }
 
   const placeholders: Record<InputMode, string> = {
-    describe:
-      '예시: "나를 차버린 전 남자친구. 완벽주의자고 외모 기준이 높음. 항상 내 스타일 지적했음."',
+    describe: `나와의 관계: (예: 3년 전에 차버린 전 남자친구)
+성격: (예: 완벽주의, 감정 표현 없음, 직설적)
+외모·사진 호불호: (예: 자연스러운 스타일 선호, 과한 필터 싫어함)
+취미/관심사: (예: 운동, 사진)
+평소 말투: (예: "그 각도 별로야", "다시 찍어" 스타일)`,
     kakao: '카카오톡 대화 내용을 그대로 붙여넣어 주세요.\n이름/닉네임 포함해도 괜찮아요.',
   };
 
