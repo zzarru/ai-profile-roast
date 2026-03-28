@@ -1,9 +1,0 @@
-{"type":"server-started","port":64721,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:64721","screen_dir":"/Users/zaru/Desktop/ttalkkakthon/.superpowers/brainstorm/85392-1774666660/content","state_dir":"/Users/zaru/Desktop/ttalkkakthon/.superpowers/brainstorm/85392-1774666660/state"}
-{"type":"screen-added","file":"/Users/zaru/Desktop/ttalkkakthon/.superpowers/brainstorm/85392-1774666660/content/result-card-tone.html"}
-{"source":"user-event","type":"click","text":"AI JUDGMENT DAY\n      \n        \n          현실주의 직장인의 판단\n          73\n        \n        호감도점수\n      \n      \n        ✦ 첫인상: 약간 어색한 미소가 포인트\n        ✦ 속마음: \"사진 찍는 거 어색하지...?\"\n      \n    \n    \n      C. 클린 그라데이션 (트렌디)\n      흰 배경에 상단 그라데이션 포인트. 인스타/X(트위터)에 잘 맞는 미니멀 트렌디 카드.","choice":"c","id":null,"timestamp":1774667045372}
-{"source":"user-event","type":"click","text":"🔥 프사 심판관 결과\n      솔직 평가 도착!\n      73점\n      \n        😮 첫인상: 약간 어색한 미소가 포인트\n        🤔 속마음: \"사진 찍는 거 어색하지...?\"\n        💬 총평: 노력은 보임\n      \n    \n    \n      B. 따뜻한 오렌지 (카카오 느낌)\n      밝고 친근한 톤. 카카오/인스타 스토리에 잘 어울림. 공유하기 쉬운 느낌.","choice":"b","id":null,"timestamp":1774667046671}
-{"source":"user-event","type":"click","text":"AI PROFILE VERDICT\n      \"솔직히 말하면...\"\n      \n        73\n        / 100호감도\n      \n      \n        📍 첫인상: 약간 어색한 미소가 포인트\n        💭 속마음: \"사진 찍는 거 어색하지...?\"\n      \n    \n    \n      A. 다크 & 시크 (심판관 느낌)\n      어두운 배경, 레드 포인트. 무겁고 진지한 분석 분위기. \"판결문\" 같은 느낌.","choice":"a","id":null,"timestamp":1774667047288}
-{"type":"screen-added","file":"/Users/zaru/Desktop/ttalkkakthon/.superpowers/brainstorm/85392-1774666660/content/result-card-layout.html"}
-{"type":"screen-added","file":"/Users/zaru/Desktop/ttalkkakthon/.superpowers/brainstorm/85392-1774666660/content/waiting-1.html"}
-{"type":"screen-added","file":"/Users/zaru/Desktop/ttalkkakthon/.superpowers/brainstorm/85392-1774666660/content/page-flow.html"}
-{"type":"server-stopped","reason":"idle timeout"}
