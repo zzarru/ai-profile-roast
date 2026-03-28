@@ -91,6 +91,7 @@ export default function CustomPersonaPage() {
     saveSession({
       personaName: extracted.persona_name,
       personaDescription: extracted.persona_description,
+      personaViewpoint: '', // 프리셋 viewpoint 잔여 방지
     });
     router.push('/upload');
   }
