@@ -7,64 +7,81 @@ interface Props {
 
 const ResultCard = forwardRef<HTMLDivElement, Props>(({ result }, ref) => {
   const isPositive = result.score >= 0;
-  const scoreColor = result.score < 0 ? 'text-red-400' : result.score < 50 ? 'text-yellow-400' : 'text-green-400';
-  const scoreLabel = result.score < -500
-    ? '고백각 0도'
-    : result.score < 0
-    ? '고백각 위험'
-    : result.score < 50
-    ? '고백각 애매'
-    : result.score < 100
-    ? '고백각 나왔다'
-    : '역고백각 주의';
+  const scoreColor = isPositive ? '#4ade80' : '#f87171';
+  const gogbackLabel =
+    result.score < -500
+      ? '고백각 0도 🚫'
+      : result.score < 0
+      ? '고백각 위험 ⚠️'
+      : result.score < 50
+      ? '고백각 애매 🤔'
+      : result.score < 100
+      ? '고백각 나왔다 📐'
+      : '역고백각 주의 💘';
 
   return (
     <div
       ref={ref}
-      className="bg-gray-950 border border-gray-800 rounded-3xl p-6 w-full"
+      style={{ aspectRatio: '1 / 1', backgroundColor: '#050505', fontFamily: 'inherit' }}
+      className="relative w-full rounded-3xl overflow-hidden flex flex-col"
     >
-      {/* 헤더 */}
-      <div className="flex items-center gap-2 mb-5">
-        <span className="text-xs text-gray-600 tracking-widest uppercase">
-          프사각 📐
-        </span>
+      {/* 상단: 페르소나 + 점수 */}
+      <div className="flex-none px-7 pt-7 pb-4 border-b border-gray-800">
+        {/* 브랜드 */}
+        <div className="text-xs text-gray-600 tracking-widest mb-3">📐 프사각</div>
+
+        {/* 페르소나 이름 */}
+        <div className="text-white font-black text-2xl leading-tight mb-4">
+          {result.persona_name}
+        </div>
+
+        {/* 점수 */}
+        <div className="flex items-end gap-3">
+          <span
+            className="font-black leading-none"
+            style={{ fontSize: '4rem', color: scoreColor }}
+          >
+            {isPositive ? '+' : ''}{result.score.toLocaleString()}
+          </span>
+          <div className="pb-2">
+            <div className="text-sm font-bold" style={{ color: scoreColor }}>
+              {gogbackLabel}
+            </div>
+            <div className="text-xs text-gray-600 mt-0.5">{result.score_label}</div>
+          </div>
+        </div>
       </div>
 
-      {/* 페르소나 */}
-      <div className="text-xs text-gray-500 mb-1">측정 대상</div>
-      <div className="font-bold text-base mb-5">{result.persona_name}</div>
+      {/* 중단: 첫인상 + 속마음 */}
+      <div className="flex-1 px-7 py-4 overflow-hidden flex flex-col gap-3 min-h-0">
+        {/* 첫인상 */}
+        <div>
+          <div className="text-xs text-gray-600 mb-1">첫인상</div>
+          <div className="text-sm text-white leading-snug">
+            &ldquo;{result.first_impression}&rdquo;
+          </div>
+        </div>
 
-      {/* 점수 */}
-      <div className="text-xs text-gray-500 mb-1">{result.persona_name}님의 호감도 변화</div>
-      <div className={`text-5xl font-black mb-1 ${scoreColor}`}>
-        {isPositive ? '+' : ''}{result.score.toLocaleString()}
+        {/* 속마음 */}
+        <div className="flex-1 min-h-0">
+          <div className="text-xs text-gray-600 mb-1.5">속마음</div>
+          <ul className="space-y-1.5">
+            {result.inner_thoughts.slice(0, 3).map((thought, i) => (
+              <li key={i} className="text-xs text-gray-300 flex gap-1.5 leading-snug">
+                <span className="text-gray-600 shrink-0 mt-px">{i + 1}.</span>
+                <span>{thought}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <div className="text-sm font-semibold mb-1" style={{ color: isPositive ? '#4ade80' : '#f87171' }}>
-        {scoreLabel}
-      </div>
-      <div className="text-xs text-gray-600 mb-5">{result.score_label}</div>
 
-      {/* 첫인상 */}
-      <div className="text-xs text-gray-500 mb-1">첫인상</div>
-      <div className="text-sm text-white mb-5 leading-relaxed">
-        &ldquo;{result.first_impression}&rdquo;
-      </div>
-
-      {/* 속마음 */}
-      <div className="text-xs text-gray-500 mb-2">😈 솔직한 속마음</div>
-      <ul className="space-y-2 mb-5">
-        {result.inner_thoughts.map((thought, i) => (
-          <li key={i} className="text-sm text-gray-300 flex gap-2">
-            <span className="text-gray-600 shrink-0">{i + 1}.</span>
-            <span>{thought}</span>
-          </li>
-        ))}
-      </ul>
-
-      {/* 착한 말 */}
-      <div className="border-t border-gray-800 pt-4">
-        <div className="text-xs text-gray-500 mb-1">😇 실제로 해줄 말</div>
-        <div className="text-sm text-gray-400 italic">&ldquo;{result.kind_comment}&rdquo;</div>
+      {/* 하단: 착한 말 */}
+      <div className="flex-none px-7 py-4 border-t border-gray-800 bg-gray-900/40">
+        <div className="text-xs text-gray-600 mb-1">그래도 해줄 말</div>
+        <div className="text-xs text-gray-400 italic leading-snug">
+          &ldquo;{result.kind_comment}&rdquo;
+        </div>
       </div>
     </div>
   );
