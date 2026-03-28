@@ -3,6 +3,7 @@
 export interface SessionData {
   personaName: string;
   personaDescription: string;
+  personaViewpoint: string;
   imageBase64: string;
   imageMediaType: string;
 }

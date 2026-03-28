@@ -4,7 +4,7 @@ import { saveResult } from '@/lib/supabase';
 
 export async function POST(req: NextRequest) {
   try {
-    const { imageBase64, imageMediaType, personaName, personaDescription } =
+    const { imageBase64, imageMediaType, personaName, personaDescription, personaViewpoint } =
       await req.json();
 
     if (!imageBase64 || !personaName || !personaDescription) {
@@ -15,7 +15,8 @@ export async function POST(req: NextRequest) {
       imageBase64,
       imageMediaType || 'image/jpeg',
       personaName,
-      personaDescription
+      personaDescription,
+      personaViewpoint
     );
 
     const id = await saveResult({

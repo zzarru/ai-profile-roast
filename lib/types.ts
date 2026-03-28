@@ -1,7 +1,8 @@
 export interface Persona {
   name: string;
-  description: string;
   emoji: string;
+  description: string; // 사용자에게 보여주는 소개글
+  viewpoint: string;   // Claude 프롬프트에만 주입되는 행동 지침
 }
 
 export interface RoastResult {

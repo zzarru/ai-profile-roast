@@ -12,6 +12,7 @@ export default function PersonaPage() {
     saveSession({
       personaName: persona.name,
       personaDescription: persona.description,
+      personaViewpoint: persona.viewpoint,
     });
     router.push('/upload');
   }

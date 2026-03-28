@@ -38,7 +38,8 @@ export async function analyzePhoto(
   imageBase64: string,
   imageMediaType: 'image/jpeg' | 'image/png' | 'image/gif' | 'image/webp',
   personaName: string,
-  personaDescription: string
+  personaDescription: string,
+  personaViewpoint?: string
 ): Promise<{
   score: number;
   score_label: string;
@@ -65,7 +66,7 @@ export async function analyzePhoto(
             type: 'text',
             text: `너는 지금 "${personaName}"이야. ${personaDescription}
 
-이 사람의 프로필 사진(소개팅 or SNS용)을 봤어. 솔직하고 날카롭게 평가해줘. 위로하거나 순화하지 마.
+${personaViewpoint ? `[평가 관점]\n${personaViewpoint}\n` : '이 사람의 프로필 사진(소개팅 or SNS용)을 봤어. 솔직하고 날카롭게 평가해줘. 위로하거나 순화하지 마.'}
 
 JSON으로만 답해줘 (다른 텍스트 없이):
 {

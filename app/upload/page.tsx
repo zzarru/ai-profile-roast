@@ -58,6 +58,7 @@ export default function UploadPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           imageBase64,
+          personaViewpoint: session.personaViewpoint,
           imageMediaType,
           personaName: session.personaName,
           personaDescription: session.personaDescription,
