@@ -31,7 +31,7 @@ JSON으로만 답해줘 (다른 텍스트 없이):
   const content = message.content[0];
   if (content.type !== 'text') throw new Error('Unexpected response type');
 
-  return JSON.parse(content.text);
+  return JSON.parse(content.text.replace(/^```json\s*/m, '').replace(/```\s*$/m, '').trim());
 }
 
 export async function analyzePhoto(
@@ -84,5 +84,5 @@ JSON으로만 답해줘 (다른 텍스트 없이):
   const content = message.content[0];
   if (content.type !== 'text') throw new Error('Unexpected response type');
 
-  return JSON.parse(content.text);
+  return JSON.parse(content.text.replace(/^```json\s*/m, '').replace(/```\s*$/m, '').trim());
 }
