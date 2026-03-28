@@ -123,7 +123,7 @@ export default function CustomPersonaPage() {
       <main className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="text-4xl mb-4">🔍</div>
-          <p className="text-gray-400">심판관 분석 중...</p>
+          <p className="text-gray-400">분석 중...</p>
         </div>
       </main>
     );
@@ -132,7 +132,7 @@ export default function CustomPersonaPage() {
   if (step === 'confirm' && extracted) {
     return (
       <main className="min-h-screen px-4 py-10 max-w-lg mx-auto">
-        <h1 className="text-2xl font-black mb-1">이 심판관 맞나요?</h1>
+        <h1 className="text-2xl font-black mb-1">이 사람 맞나요?</h1>
         <p className="text-gray-400 text-sm mb-6">AI가 분석한 결과예요</p>
 
         <div className="border border-gray-700 rounded-2xl p-6 mb-6">
@@ -148,7 +148,7 @@ export default function CustomPersonaPage() {
             onClick={handleConfirm}
             className="w-full bg-white text-black font-bold py-4 rounded-full hover:bg-gray-200 transition-colors"
           >
-            맞아, 이 심판관으로 판결받기 →
+            맞아, 이 사람으로 측정하기 →
           </button>
           <button
             onClick={() => setStep('input')}
@@ -175,9 +175,9 @@ export default function CustomPersonaPage() {
 
   return (
     <main className="min-h-screen px-4 py-10 max-w-lg mx-auto">
-      <h1 className="text-2xl font-black mb-1">심판관 직접 만들기</h1>
+      <h1 className="text-2xl font-black mb-1">직접 입력하기</h1>
       <p className="text-gray-400 text-sm mb-6">
-        평가받고 싶은 사람을 알려주면 AI가 그 사람처럼 판결해줘요
+        그 사람을 알려주면 AI가 그 시각으로 프사각을 측정해줘요
       </p>
 
       {/* 입력 방식 탭 */}
@@ -273,7 +273,7 @@ export default function CustomPersonaPage() {
         disabled={!isReady}
         className="w-full bg-white text-black font-bold py-4 rounded-full hover:bg-gray-200 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
       >
-        AI로 심판관 분석하기
+        AI로 분석하기
       </button>
     </main>
   );

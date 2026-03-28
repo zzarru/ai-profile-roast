@@ -6,12 +6,17 @@ interface Props {
 }
 
 const ResultCard = forwardRef<HTMLDivElement, Props>(({ result }, ref) => {
-  const scoreColor =
-    result.score < 0
-      ? 'text-red-400'
-      : result.score < 50
-      ? 'text-yellow-400'
-      : 'text-green-400';
+  const isPositive = result.score >= 0;
+  const scoreColor = result.score < 0 ? 'text-red-400' : result.score < 50 ? 'text-yellow-400' : 'text-green-400';
+  const scoreLabel = result.score < -500
+    ? '고백각 0도'
+    : result.score < 0
+    ? '고백각 위험'
+    : result.score < 50
+    ? '고백각 애매'
+    : result.score < 100
+    ? '고백각 나왔다'
+    : '역고백각 주의';
 
   return (
     <div
@@ -21,20 +26,23 @@ const ResultCard = forwardRef<HTMLDivElement, Props>(({ result }, ref) => {
       {/* 헤더 */}
       <div className="flex items-center gap-2 mb-5">
         <span className="text-xs text-gray-600 tracking-widest uppercase">
-          AI Profile Roast
+          프사각 📐
         </span>
       </div>
 
       {/* 페르소나 */}
-      <div className="text-xs text-gray-500 mb-1">심판관</div>
+      <div className="text-xs text-gray-500 mb-1">측정 대상</div>
       <div className="font-bold text-base mb-5">{result.persona_name}</div>
 
       {/* 점수 */}
-      <div className="text-xs text-gray-500 mb-1">{result.persona_name}님의 호감도</div>
+      <div className="text-xs text-gray-500 mb-1">{result.persona_name}님의 호감도 변화</div>
       <div className={`text-5xl font-black mb-1 ${scoreColor}`}>
-        {result.score.toLocaleString()}점
+        {isPositive ? '+' : ''}{result.score.toLocaleString()}
       </div>
-      <div className="text-sm text-gray-500 mb-5">{result.score_label}</div>
+      <div className="text-sm font-semibold mb-1" style={{ color: isPositive ? '#4ade80' : '#f87171' }}>
+        {scoreLabel}
+      </div>
+      <div className="text-xs text-gray-600 mb-5">{result.score_label}</div>
 
       {/* 첫인상 */}
       <div className="text-xs text-gray-500 mb-1">첫인상</div>

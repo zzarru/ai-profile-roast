@@ -79,7 +79,7 @@ export default function UploadPage() {
     <main className="min-h-screen px-4 py-10 max-w-lg mx-auto">
       <h1 className="text-2xl font-black mb-1">사진 업로드</h1>
       <p className="text-gray-400 text-sm mb-6">
-        판결받을 프로필 사진을 올려주세요
+        이 사진으로 프사각을 측정해볼까요?
       </p>
 
       <div
@@ -118,7 +118,7 @@ export default function UploadPage() {
         disabled={!imageBase64 || loading}
         className="w-full mt-6 bg-white text-black font-bold py-4 rounded-full disabled:opacity-30 hover:bg-gray-200 transition-colors"
       >
-        {loading ? '분석 중...' : '판결 받기 ⚖️'}
+        {loading ? '측정 중...' : '프사각 측정하기 📐'}
       </button>
     </main>
   );

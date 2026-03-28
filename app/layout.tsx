@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: '프사 심판관 | AI Profile Roast',
-  description: '오늘만큼은 AI가 솔직하게 말해드립니다.',
+  title: '프사각',
+  description: '이거 프사각?',
   openGraph: {
-    title: '프사 심판관',
-    description: '오늘만큼은 AI가 솔직하게 말해드립니다.',
+    title: '프사각',
+    description: '이거 프사각?',
   },
 };
 
